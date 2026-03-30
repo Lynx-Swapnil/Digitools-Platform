@@ -55,7 +55,7 @@ function StepsSection() {
             </div>
 
             <h3 className="font-heading text-[2rem] font-bold text-[#1f2937]">{step.title}</h3>
-            <p className="mx-auto mt-2 max-w-[240px] text-base leading-relaxed text-[#64748b]">
+            <p className="mx-auto mt-2 max-w-60 text-base leading-relaxed text-[#64748b]">
               {step.description}
             </p>
           </article>

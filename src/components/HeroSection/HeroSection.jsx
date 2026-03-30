@@ -4,7 +4,7 @@ import playIcon from '../../../assets/Play.png'
 function HeroSection() {
   return (
     <section
-      className="mx-auto grid w-full max-w-[1280px] grid-cols-1 items-center gap-8 px-3 pt-10 pb-14 md:px-4 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-16 lg:px-6 lg:pt-14 lg:pb-16"
+      className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-8 px-3 pt-10 pb-14 md:px-4 lg:grid-cols-[minmax(0,1fr)_460px] lg:gap-16 lg:px-6 lg:pt-14 lg:pb-16"
       id="home"
     >
       <div>
@@ -41,7 +41,7 @@ function HeroSection() {
           </button>
         </div>
       </div>
-      <div className="overflow-hidden rounded-lg border border-[#ececf1] bg-gradient-to-br from-[#e7e7eb] to-[#f7f7f8]">
+      <div className="overflow-hidden rounded-lg border border-[#ececf1] bg-linear-to-br from-[#e7e7eb] to-[#f7f7f8]">
         <img
           className="block aspect-square w-full object-cover"
           src={heroImg}

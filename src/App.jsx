@@ -25,7 +25,7 @@ function App() {
 
         const data = await response.json()
         setProducts(data)
-      } catch (_error) {
+      } catch {
         toast.error('Failed to load product list')
       }
     }

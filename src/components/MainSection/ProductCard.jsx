@@ -30,7 +30,7 @@ function ProductCard({ product, isInCart, onAddToCart }) {
         className={`btn mt-auto w-full rounded-full border-0 px-6 text-base font-bold text-white transition-all ${
           isInCart
             ? 'btn-disabled cursor-not-allowed bg-[#b8a8eb]'
-            : 'btn-primary bg-linear-to-r from-[#5f2cff] to-[#9627ff] hover:brightness-110 active:translate-y-[1px]'
+            : 'btn-primary bg-linear-to-r from-[#5f2cff] to-[#9627ff] hover:brightness-110 active:translate-y-px'
         }`}
         onClick={() => onAddToCart(product)}
         disabled={isInCart}

@@ -17,7 +17,7 @@ function MainSection({
   const cartItemIds = new Set(cartItems.map((item) => item.id))
 
   return (
-    <section className="mx-auto w-full max-w-[1280px] px-3 py-14 md:px-4 lg:px-6" id="products">
+    <section className="mx-auto w-full max-w-7xl px-3 py-14 md:px-4 lg:px-6" id="products">
       <header className="mb-7 text-center">
         <h2 className="font-heading text-4xl font-bold leading-tight text-[#1d1f3a]">
           Premium Digital Tools

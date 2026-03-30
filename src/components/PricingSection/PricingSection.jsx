@@ -18,7 +18,7 @@ function PricingSection() {
 
         const defaultActivePlan = data.find((plan) => plan.featured)?.name || data[0]?.name || ''
         setActivePlan(defaultActivePlan)
-      } catch (_error) {
+      } catch {
         setPlans([])
         setActivePlan('')
       }

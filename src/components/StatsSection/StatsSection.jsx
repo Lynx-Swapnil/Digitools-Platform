@@ -1,7 +1,7 @@
 function StatsSection() {
   return (
     <section
-      className="grid grid-cols-1 bg-gradient-to-r from-[#4f2cff] to-[#9f22ff] px-4 py-7 text-center text-white md:grid-cols-3"
+      className="grid grid-cols-1 bg-linear-to-r from-[#4f2cff] to-[#9f22ff] px-4 py-7 text-center text-white md:grid-cols-3"
       aria-label="Platform statistics"
     >
       <div className="py-3 md:border-r md:border-white/25">
