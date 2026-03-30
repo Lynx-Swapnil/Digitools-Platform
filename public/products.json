@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "AI Writing Pro",
+    "description": "Long-form writing assistant with SEO briefs and brand voice memory.",
+    "price": 29,
+    "period": "monthly",
+    "tag": "popular",
+    "tagType": "Popular",
+    "features": [
+      "Unlimited project drafts",
+      "Tone and readability controls",
+      "Team collaboration workspace"
+    ],
+    "icon": "writing"
+  },
+  {
+    "id": 2,
+    "name": "Design Template Pack",
+    "description": "Ready-to-use social, pitch, and landing page templates for fast launches.",
+    "price": 49,
+    "period": "one-time",
+    "tag": "new",
+    "tagType": "New",
+    "features": [
+      "500+ editable components",
+      "Figma and Penpot support",
+      "Commercial usage rights"
+    ],
+    "icon": "design"
+  },
+  {
+    "id": 3,
+    "name": "Premium Stock Assets",
+    "description": "Curated photos, vectors, and motion clips for polished visual storytelling.",
+    "price": 19,
+    "period": "monthly",
+    "tag": "best seller",
+    "tagType": "Best Seller",
+    "features": [
+      "250K+ royalty-free files",
+      "4K and SVG downloads",
+      "Weekly fresh collections"
+    ],
+    "icon": "stock"
+  },
+  {
+    "id": 4,
+    "name": "Automation Toolkit",
+    "description": "No-code flows to automate lead capture, onboarding, and reporting.",
+    "price": 79,
+    "period": "yearly",
+    "tag": "popular",
+    "tagType": "Popular",
+    "features": [
+      "50+ workflow templates",
+      "CRM and email integrations",
+      "Advanced trigger filters"
+    ],
+    "icon": "automation"
+  },
+  {
+    "id": 5,
+    "name": "Resume Builder Pro",
+    "description": "ATS-friendly resume builder with role-specific suggestions and export options.",
+    "price": 9,
+    "period": "monthly",
+    "tag": "new",
+    "tagType": "New",
+    "features": [
+      "100+ modern resume layouts",
+      "One-click PDF export",
+      "Skill gap recommendations"
+    ],
+    "icon": "resume"
+  },
+  {
+    "id": 6,
+    "name": "Social Media Content Kit",
+    "description": "Caption ideas, post planners, and hashtag intelligence for growth teams.",
+    "price": 15,
+    "period": "monthly",
+    "tag": "best seller",
+    "tagType": "Best Seller",
+    "features": [
+      "30-day content calendar",
+      "Platform-specific copy ideas",
+      "Performance snapshot dashboard"
+    ],
+    "icon": "social"
+  },
+  {
+    "id": 7,
+    "name": "Client Proposal Studio",
+    "description": "Proposal templates and pricing calculators for agencies and freelancers.",
+    "price": 39,
+    "period": "one-time",
+    "tag": "popular",
+    "tagType": "Popular",
+    "features": [
+      "Winning proposal blueprints",
+      "Auto-generated scope blocks",
+      "E-signature ready output"
+    ],
+    "icon": "proposal"
+  },
+  {
+    "id": 8,
+    "name": "Analytics Insight Board",
+    "description": "Unified performance board for campaigns, funnels, and product activity.",
+    "price": 24,
+    "period": "monthly",
+    "tag": "new",
+    "tagType": "New",
+    "features": [
+      "Live KPI scorecards",
+      "Custom report sharing",
+      "Anomaly alerts"
+    ],
+    "icon": "analytics"
+  }
+]
