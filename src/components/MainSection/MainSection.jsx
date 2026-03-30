@@ -52,7 +52,7 @@ function MainSection({
             aria-selected={activeView === 'cart'}
             onClick={onShowCart}
           >
-            Cart
+            Cart{cartItems.length > 0 ? ` (${cartItems.length})` : ''}
           </button>
         </div>
       </header>
