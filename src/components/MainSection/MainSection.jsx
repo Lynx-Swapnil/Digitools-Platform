@@ -23,8 +23,7 @@ function MainSection({
           Premium Digital Tools
         </h2>
         <p className="text-[#5c5f7a]">
-          Find the right products for your workflow and switch to cart view
-          anytime.
+          Choose from our curated collection of premium digital products designed <br />to boost your productivity and creativity.
         </p>
         <div
           className="mt-4 inline-flex rounded-full border border-[#e8e9f0] bg-white p-1"
