@@ -99,7 +99,7 @@ function MainSection({
                   <strong>${totalPrice}</strong>
                 </p>
                 <button
-                  className="rounded-full border-0 bg-gradient-to-r from-[#5f2cff] to-[#9627ff] px-5 py-2 text-sm font-bold text-white"
+                  className="w-full rounded-full border-0 bg-linear-to-r from-[#5f2cff] to-[#9627ff] px-6 py-3 text-base font-bold text-white"
                   type="button"
                   onClick={onCheckout}
                 >
