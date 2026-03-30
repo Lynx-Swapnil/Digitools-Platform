@@ -8,7 +8,6 @@ import Navbar from './components/Navbar/Navbar'
 import PricingSection from './components/PricingSection/PricingSection'
 import StatsSection from './components/StatsSection/StatsSection'
 import StepsSection from './components/StepsSection/StepsSection'
-import './App.css'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
@@ -73,7 +72,7 @@ function App() {
   }
 
   return (
-    <div className="page">
+    <div className="min-h-screen text-[#1d1f3a] bg-[radial-gradient(circle_at_10%_-15%,rgba(115,73,255,0.14),transparent_35%),radial-gradient(circle_at_85%_8%,rgba(255,80,160,0.08),transparent_30%),#f8f8fb]">
       <Navbar cartCount={cartItems.length} onOpenCart={() => setActiveView('cart')} />
 
       <main>

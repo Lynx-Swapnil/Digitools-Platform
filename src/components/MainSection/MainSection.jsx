@@ -13,17 +13,30 @@ function MainSection({
   onRemoveFromCart,
   onCheckout,
 }) {
+  const baseToggleButton =
+    'rounded-full border-0 px-4 py-2 text-sm font-bold transition-colors md:px-5'
+
   return (
-    <section className="main-section container" id="products">
-      <header className="section-heading">
-        <h2>Premium Digital Tools</h2>
-        <p>
+    <section className="mx-auto w-full max-w-[1280px] px-3 py-14 md:px-4 lg:px-6" id="products">
+      <header className="mb-7 text-center">
+        <h2 className="font-heading text-4xl font-bold leading-tight text-[#1d1f3a]">
+          Premium Digital Tools
+        </h2>
+        <p className="text-[#5c5f7a]">
           Find the right products for your workflow and switch to cart view
           anytime.
         </p>
-        <div className="view-toggle" role="tablist" aria-label="View switcher">
+        <div
+          className="mt-4 inline-flex rounded-full border border-[#e8e9f0] bg-white p-1"
+          role="tablist"
+          aria-label="View switcher"
+        >
           <button
-            className={activeView === 'products' ? 'active' : ''}
+            className={`${baseToggleButton} ${
+              activeView === 'products'
+                ? 'bg-[#6d31f8] text-white'
+                : 'bg-transparent text-[#5c5f7a]'
+            }`}
             type="button"
             role="tab"
             aria-selected={activeView === 'products'}
@@ -32,7 +45,9 @@ function MainSection({
             Products
           </button>
           <button
-            className={activeView === 'cart' ? 'active' : ''}
+            className={`${baseToggleButton} ${
+              activeView === 'cart' ? 'bg-[#6d31f8] text-white' : 'bg-transparent text-[#5c5f7a]'
+            }`}
             type="button"
             role="tab"
             aria-selected={activeView === 'cart'}
@@ -44,29 +59,39 @@ function MainSection({
       </header>
 
       {activeView === 'products' ? (
-        <div className="product-grid">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => {
             const Icon = iconMap[product.icon] || FaStar
 
             return (
-              <article key={product.id} className="product-card">
-                <div className="card-head">
-                  <span className="product-icon" aria-hidden="true">
+              <article
+                key={product.id}
+                className="flex flex-col gap-3 rounded-2xl border border-[#e8e9f0] bg-white p-4"
+              >
+                <div className="flex items-center justify-between">
+                  <span
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#efe9ff] text-[#6d31f8]"
+                    aria-hidden="true"
+                  >
                     <Icon />
                   </span>
-                  <span className="tag">{product.tagType}</span>
+                  <span className="rounded-full bg-[#f6f2ff] px-2.5 py-1 text-xs font-bold text-[#6429e8]">
+                    {product.tagType}
+                  </span>
                 </div>
-                <h3>{product.name}</h3>
-                <p>{product.description}</p>
-                <p className="price">{priceText(product.price, product.period)}</p>
-                <ul>
+                <h3 className="font-heading text-xl font-bold text-[#1d1f3a]">{product.name}</h3>
+                <p className="text-[#5c5f7a]">{product.description}</p>
+                <p className="font-bold text-[#1d1f3a]">
+                  {priceText(product.price, product.period)}
+                </p>
+                <ul className="list-inside list-disc text-[#5c5f7a]">
                   {product.features.map((feature) => (
                     <li key={feature}>{feature}</li>
                   ))}
                 </ul>
                 <button
                   type="button"
-                  className="btn btn-primary buy-btn"
+                  className="mt-auto rounded-full border-0 bg-gradient-to-r from-[#5f2cff] to-[#9627ff] px-5 py-2 text-sm font-bold text-white"
                   onClick={() => onAddToCart(product)}
                 >
                   {recentlyAddedId === product.id ? 'Added to cart' : 'Buy Now'}
@@ -76,41 +101,60 @@ function MainSection({
           })}
         </div>
       ) : (
-        <section className="cart-panel" aria-live="polite">
-          <h3>Your Cart</h3>
+        <section
+          className="rounded-2xl border border-[#e8e9f0] bg-white p-5"
+          aria-live="polite"
+        >
+          <h3 className="font-heading text-2xl font-bold text-[#1d1f3a]">Your Cart</h3>
 
           {!cartItems.length ? (
-            <p className="empty-cart">Your cart is empty. Pick a product to get started.</p>
+            <p className="text-[#5c5f7a]">Your cart is empty. Pick a product to get started.</p>
           ) : (
             <>
-              <div className="cart-items">
+              <div className="grid grid-cols-1 gap-3">
                 {cartItems.map((item, index) => {
                   const Icon = iconMap[item.icon] || FaStar
 
                   return (
-                    <article key={`${item.id}-${index}`} className="cart-item">
-                      <div>
-                        <span className="product-icon" aria-hidden="true">
+                    <article
+                      key={`${item.id}-${index}`}
+                      className="flex items-center justify-between gap-3 rounded-xl border border-[#e8e9f0] p-3"
+                    >
+                      <div className="flex items-center gap-3">
+                        <span
+                          className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#efe9ff] text-[#6d31f8]"
+                          aria-hidden="true"
+                        >
                           <Icon />
                         </span>
                         <div>
-                          <h4>{item.name}</h4>
-                          <p>{priceText(item.price, item.period)}</p>
+                          <h4 className="m-0 font-heading text-lg font-bold text-[#1d1f3a]">
+                            {item.name}
+                          </h4>
+                          <p className="m-0 text-[#5c5f7a]">{priceText(item.price, item.period)}</p>
                         </div>
                       </div>
-                      <button type="button" onClick={() => onRemoveFromCart(index)}>
+                      <button
+                        className="rounded-full border-0 bg-[#ffe8ec] px-3 py-1.5 font-bold text-[#d7254d]"
+                        type="button"
+                        onClick={() => onRemoveFromCart(index)}
+                      >
                         Remove
                       </button>
                     </article>
                   )
                 })}
               </div>
-              <div className="cart-footer">
-                <p>
+              <div className="mt-4">
+                <p className="mb-3 flex justify-between">
                   <span>Total ({cartItems.length})</span>
                   <strong>${totalPrice}</strong>
                 </p>
-                <button className="btn btn-primary" type="button" onClick={onCheckout}>
+                <button
+                  className="rounded-full border-0 bg-gradient-to-r from-[#5f2cff] to-[#9627ff] px-5 py-2 text-sm font-bold text-white"
+                  type="button"
+                  onClick={onCheckout}
+                >
                   Proceed to Checkout
                 </button>
               </div>
