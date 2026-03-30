@@ -1,5 +1,5 @@
-import { FaStar } from 'react-icons/fa'
-import { iconMap, priceText } from './productHelpers'
+import CartItemCard from './CartItemCard'
+import ProductCard from './ProductCard'
 
 function MainSection({
   products,
@@ -60,48 +60,15 @@ function MainSection({
       {activeView === 'products' ? (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => {
-            const Icon = iconMap[product.icon] || FaStar
             const isInCart = cartItemIds.has(product.id)
 
             return (
-              <article
+              <ProductCard
                 key={product.id}
-                className="flex flex-col gap-3 rounded-2xl border border-[#e8e9f0] bg-white p-4"
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#efe9ff] text-[#6d31f8]"
-                    aria-hidden="true"
-                  >
-                    <Icon />
-                  </span>
-                  <span className="rounded-full bg-[#f6f2ff] px-2.5 py-1 text-xs font-bold text-[#6429e8]">
-                    {product.tagType}
-                  </span>
-                </div>
-                <h3 className="font-heading text-xl font-bold text-[#1d1f3a]">{product.name}</h3>
-                <p className="text-[#5c5f7a]">{product.description}</p>
-                <p className="font-bold text-[#1d1f3a]">
-                  {priceText(product.price, product.period)}
-                </p>
-                <ul className="list-inside list-disc text-[#5c5f7a]">
-                  {product.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  className={`mt-auto rounded-full border-0 px-5 py-2 text-sm font-bold text-white ${
-                    isInCart
-                      ? 'cursor-not-allowed bg-[#b8a8eb]'
-                      : 'bg-gradient-to-r from-[#5f2cff] to-[#9627ff]'
-                  }`}
-                  onClick={() => onAddToCart(product)}
-                  disabled={isInCart}
-                >
-                  {isInCart ? 'Added to cart' : 'Buy Now'}
-                </button>
-              </article>
+                product={product}
+                isInCart={isInCart}
+                onAddToCart={onAddToCart}
+              />
             )
           })}
         </div>
@@ -117,38 +84,14 @@ function MainSection({
           ) : (
             <>
               <div className="grid grid-cols-1 gap-3">
-                {cartItems.map((item, index) => {
-                  const Icon = iconMap[item.icon] || FaStar
-
-                  return (
-                    <article
-                      key={`${item.id}-${index}`}
-                      className="flex items-center justify-between gap-3 rounded-xl border border-[#e8e9f0] p-3"
-                    >
-                      <div className="flex items-center gap-3">
-                        <span
-                          className="inline-flex h-8 w-8 items-center justify-center rounded-xl bg-[#efe9ff] text-[#6d31f8]"
-                          aria-hidden="true"
-                        >
-                          <Icon />
-                        </span>
-                        <div>
-                          <h4 className="m-0 font-heading text-lg font-bold text-[#1d1f3a]">
-                            {item.name}
-                          </h4>
-                          <p className="m-0 text-[#5c5f7a]">{priceText(item.price, item.period)}</p>
-                        </div>
-                      </div>
-                      <button
-                        className="rounded-full border-0 bg-[#ffe8ec] px-3 py-1.5 font-bold text-[#d7254d]"
-                        type="button"
-                        onClick={() => onRemoveFromCart(index)}
-                      >
-                        Remove
-                      </button>
-                    </article>
-                  )
-                })}
+                {cartItems.map((item, index) => (
+                  <CartItemCard
+                    key={`${item.id}-${index}`}
+                    item={item}
+                    index={index}
+                    onRemoveFromCart={onRemoveFromCart}
+                  />
+                ))}
               </div>
               <div className="mt-4">
                 <p className="mb-3 flex justify-between">
