@@ -49,16 +49,13 @@ function App() {
   }
 
   const removeFromCart = (indexToRemove) => {
-    setCartItems((prev) => {
-      const removedItem = prev[indexToRemove]
-      const updated = prev.filter((_, index) => index !== indexToRemove)
+    const removedItem = cartItems[indexToRemove]
+    if (!removedItem) {
+      return
+    }
 
-      if (removedItem) {
-        toast.info(`${removedItem.name} removed from cart`)
-      }
-
-      return updated
-    })
+    setCartItems((prev) => prev.filter((_, index) => index !== indexToRemove))
+    toast.info(`${removedItem.name} removed from cart`)
   }
 
   const checkout = () => {
