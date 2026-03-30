@@ -1,61 +1,89 @@
+import { useEffect, useState } from 'react'
+import { FaCheck } from 'react-icons/fa'
+
 function PricingSection() {
+  const [plans, setPlans] = useState([])
+
+  useEffect(() => {
+    const loadPlans = async () => {
+      try {
+        const response = await fetch('/plans.json')
+        if (!response.ok) {
+          throw new Error('Unable to load plans')
+        }
+
+        const data = await response.json()
+        setPlans(data)
+      } catch (_error) {
+        setPlans([])
+      }
+    }
+
+    loadPlans()
+  }, [])
+
   return (
-    <section className="mx-auto w-full max-w-[1280px] px-3 py-14 md:px-4 lg:px-6" id="pricing">
-      <header className="mb-7 text-center">
-        <h2 className="font-heading text-4xl font-bold leading-tight text-[#1d1f3a]">
+    <section className="mx-auto w-full max-w-7xl px-3 py-20 md:px-4 lg:px-6" id="pricing">
+      <header className="mb-9 text-center">
+        <h2 className="font-heading text-5xl font-extrabold leading-tight text-[#111827]">
           Simple, Transparent Pricing
         </h2>
-        <p className="text-[#5c5f7a]">Choose a package based on your current stage.</p>
+        <p className="mt-3 text-lg text-[#64748b]">
+          Choose the plan that fits your needs. Upgrade or downgrade anytime.
+        </p>
       </header>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <article className="rounded-2xl border border-[#e8e9f0] bg-white p-5">
-          <h3 className="font-heading text-xl font-bold text-[#1d1f3a]">Starter</h3>
-          <p className="font-heading text-3xl font-bold text-[#1d1f3a]">$0/month</p>
-          <ul className="mt-2 list-inside list-disc text-[#5c5f7a]">
-            <li>3 products included</li>
-            <li>Basic support</li>
-            <li>1 shared workspace</li>
-          </ul>
-          <button
-            className="mt-4 rounded-full border border-[#7d33f7] bg-white px-5 py-2 text-sm font-bold text-[#6d31f8]"
-            type="button"
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {plans.map((plan) => (
+          <article
+            key={plan.name}
+            className={`relative flex h-full flex-col rounded-2xl border p-5 ${
+              plan.featured
+                ? 'border-transparent bg-linear-to-br from-[#5f2cff] to-[#a21dff] text-white shadow-[0_18px_32px_-24px_rgba(98,46,255,0.9)]'
+                : 'border-[#e5e7eb] bg-white text-[#111827]'
+            }`}
           >
-            Start Free
-          </button>
-        </article>
-        <article className="relative rounded-2xl border border-[#a98cff] bg-white p-5">
-          <p className="absolute -top-3 left-4 rounded-full bg-[#f6f2ff] px-3 py-1 text-xs font-bold text-[#6429e8]">
-            Most Popular
-          </p>
-          <h3 className="font-heading text-xl font-bold text-[#1d1f3a]">Pro</h3>
-          <p className="font-heading text-3xl font-bold text-[#1d1f3a]">$29/month</p>
-          <ul className="mt-2 list-inside list-disc text-[#5c5f7a]">
-            <li>Unlimited products</li>
-            <li>Priority support</li>
-            <li>Advanced analytics</li>
-          </ul>
-          <button
-            className="mt-4 rounded-full border-0 bg-gradient-to-r from-[#5f2cff] to-[#9627ff] px-5 py-2 text-sm font-bold text-white"
-            type="button"
-          >
-            Go Pro
-          </button>
-        </article>
-        <article className="rounded-2xl border border-[#e8e9f0] bg-white p-5">
-          <h3 className="font-heading text-xl font-bold text-[#1d1f3a]">Enterprise</h3>
-          <p className="font-heading text-3xl font-bold text-[#1d1f3a]">$99/month</p>
-          <ul className="mt-2 list-inside list-disc text-[#5c5f7a]">
-            <li>Dedicated manager</li>
-            <li>Custom integrations</li>
-            <li>Security review</li>
-          </ul>
-          <button
-            className="mt-4 rounded-full border border-[#7d33f7] bg-white px-5 py-2 text-sm font-bold text-[#6d31f8]"
-            type="button"
-          >
-            Contact Sales
-          </button>
-        </article>
+            {plan.badge ? (
+              <p className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#ffd86e] px-3 py-1 text-xs font-bold text-[#9a5900]">
+                {plan.badge}
+              </p>
+            ) : null}
+
+            <h3 className="font-heading text-4xl font-bold">{plan.name}</h3>
+            <p className={`mt-1 text-lg ${plan.featured ? 'text-white/85' : 'text-[#64748b]'}`}>
+              {plan.subtitle}
+            </p>
+
+            <div className="mt-6 flex items-baseline gap-1">
+              <span className="font-heading text-5xl font-extrabold">{plan.price}</span>
+              <span className={`${plan.featured ? 'text-white/85' : 'text-[#64748b]'}`}>{plan.period}</span>
+            </div>
+
+            <ul className="mt-6 space-y-2.5">
+              {plan.features.map((feature) => (
+                <li
+                  key={feature}
+                  className={`flex items-start gap-2 ${
+                    plan.featured ? 'text-white' : 'text-[#334155]'
+                  }`}
+                >
+                  <FaCheck className={`mt-1 shrink-0 ${plan.featured ? 'text-white' : 'text-[#22c55e]'}`} />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <br />
+            <button
+              className={`mt-auto w-full rounded-full px-5 py-2.5 text-base font-bold ${
+                plan.featured
+                  ? 'bg-white text-[#5f2cff]'
+                  : 'bg-linear-to-r from-[#5f2cff] to-[#9627ff] text-white'
+              }`}
+              type="button"
+            >
+              {plan.buttonText}
+            </button>
+          </article>
+        ))}
       </div>
     </section>
   )

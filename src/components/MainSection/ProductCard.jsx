@@ -27,10 +27,10 @@ function ProductCard({ product, isInCart, onAddToCart }) {
       </ul>
       <button
         type="button"
-        className={`mt-auto rounded-full border-0 px-5 py-2 text-sm font-bold text-white ${
+        className={`mt-auto w-full rounded-full border-0 px-6 py-3 text-base font-bold text-white transition-all ${
           isInCart
             ? 'cursor-not-allowed bg-[#b8a8eb]'
-            : 'bg-gradient-to-r from-[#5f2cff] to-[#9627ff]'
+            : 'bg-linear-to-r from-[#5f2cff] to-[#9627ff] hover:brightness-110 active:translate-y-[1px]'
         }`}
         onClick={() => onAddToCart(product)}
         disabled={isInCart}
