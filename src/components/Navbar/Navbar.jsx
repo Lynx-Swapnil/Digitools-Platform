@@ -37,9 +37,11 @@ function Navbar({ cartCount, onOpenCart }) {
           title="Open cart"
         >
           <FaShoppingCart aria-hidden="true" />
-          <span className="absolute -top-2 -right-3 inline-flex h-[1.15rem] min-w-[1.15rem] items-center justify-center rounded-full bg-red-500 px-1 text-[0.68rem] font-bold leading-none text-white">
-            {cartCount}
-          </span>
+          {cartCount > 0 ? (
+            <span className="absolute -top-2 -right-3 inline-flex h-[1.15rem] min-w-[1.15rem] items-center justify-center rounded-full bg-red-500 px-1 text-[0.68rem] font-bold leading-none text-white">
+              {cartCount}
+            </span>
+          ) : null}
         </button>
         <button
           className="hidden border-0 bg-transparent text-base font-semibold text-[#182231] md:inline-block"

@@ -6,7 +6,6 @@ function MainSection({
   activeView,
   onShowProducts,
   onShowCart,
-  recentlyAddedId,
   onAddToCart,
   cartItems,
   totalPrice,
@@ -15,6 +14,7 @@ function MainSection({
 }) {
   const baseToggleButton =
     'rounded-full border-0 px-4 py-2 text-sm font-bold transition-colors md:px-5'
+  const cartItemIds = new Set(cartItems.map((item) => item.id))
 
   return (
     <section className="mx-auto w-full max-w-[1280px] px-3 py-14 md:px-4 lg:px-6" id="products">
@@ -62,6 +62,7 @@ function MainSection({
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {products.map((product) => {
             const Icon = iconMap[product.icon] || FaStar
+            const isInCart = cartItemIds.has(product.id)
 
             return (
               <article
@@ -91,10 +92,15 @@ function MainSection({
                 </ul>
                 <button
                   type="button"
-                  className="mt-auto rounded-full border-0 bg-gradient-to-r from-[#5f2cff] to-[#9627ff] px-5 py-2 text-sm font-bold text-white"
+                  className={`mt-auto rounded-full border-0 px-5 py-2 text-sm font-bold text-white ${
+                    isInCart
+                      ? 'cursor-not-allowed bg-[#b8a8eb]'
+                      : 'bg-gradient-to-r from-[#5f2cff] to-[#9627ff]'
+                  }`}
                   onClick={() => onAddToCart(product)}
+                  disabled={isInCart}
                 >
-                  {recentlyAddedId === product.id ? 'Added to cart' : 'Buy Now'}
+                  {isInCart ? 'Added to cart' : 'Buy Now'}
                 </button>
               </article>
             )

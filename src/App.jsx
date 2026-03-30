@@ -14,7 +14,6 @@ function App() {
   const [products, setProducts] = useState([])
   const [activeView, setActiveView] = useState('products')
   const [cartItems, setCartItems] = useState([])
-  const [recentlyAddedId, setRecentlyAddedId] = useState(null)
 
   useEffect(() => {
     const loadProducts = async () => {
@@ -40,12 +39,13 @@ function App() {
   )
 
   const addToCart = (product) => {
+    if (cartItems.some((item) => item.id === product.id)) {
+      toast.info(`${product.name} is already in cart`)
+      return
+    }
+
     setCartItems((prev) => [...prev, product])
-    setRecentlyAddedId(product.id)
     toast.success(`${product.name} added to cart`)
-    window.setTimeout(() => {
-      setRecentlyAddedId((current) => (current === product.id ? null : current))
-    }, 1500)
   }
 
   const removeFromCart = (indexToRemove) => {
@@ -83,7 +83,6 @@ function App() {
           activeView={activeView}
           onShowProducts={() => setActiveView('products')}
           onShowCart={() => setActiveView('cart')}
-          recentlyAddedId={recentlyAddedId}
           onAddToCart={addToCart}
           cartItems={cartItems}
           totalPrice={totalPrice}
