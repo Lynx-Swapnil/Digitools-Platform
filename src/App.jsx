@@ -68,9 +68,17 @@ function App() {
     toast.success('Checkout complete. Cart has been cleared.')
   }
 
+  const openCartSection = () => {
+    setActiveView('cart')
+    document.getElementById('products')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    })
+  }
+
   return (
     <div className="min-h-screen text-[#1d1f3a] bg-[radial-gradient(circle_at_10%_-15%,rgba(115,73,255,0.14),transparent_35%),radial-gradient(circle_at_85%_8%,rgba(255,80,160,0.08),transparent_30%),#f8f8fb]">
-      <Navbar cartCount={cartItems.length} onOpenCart={() => setActiveView('cart')} />
+      <Navbar cartCount={cartItems.length} onOpenCart={openCartSection} />
 
       <main>
         <HeroSection />

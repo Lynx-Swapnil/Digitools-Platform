@@ -8,7 +8,7 @@ function HeroSection() {
       id="home"
     >
       <div>
-        <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#dfe2ff] px-4 py-2 text-sm font-semibold text-[#6d31f8]">
+        <p className="badge badge-lg mb-4 inline-flex h-auto gap-2 rounded-full border-0 bg-[#dfe2ff] px-4 py-2 text-sm font-semibold text-[#6d31f8]">
           <span
             className="h-2 w-2 rounded-full bg-[#7d33f7] shadow-[0_0_0_3px_rgba(125,51,247,0.18)]"
             aria-hidden="true"
@@ -26,14 +26,14 @@ function HeroSection() {
           Explore Products
         </a>
         <div className="mt-5 flex flex-wrap gap-3">
-          <button
-            className="rounded-full border-0 bg-gradient-to-r from-[#5f2cff] to-[#9627ff] px-6 py-3 text-base font-bold text-white"
-            type="button"
+          <a
+            className="btn btn-primary rounded-full border-0 bg-linear-to-r from-[#5f2cff] to-[#9627ff] px-6 text-base font-bold text-white"
+            href="#products"
           >
             Explore Products
-          </button>
+          </a>
           <button
-            className="inline-flex items-center gap-2 rounded-full border border-[#7d33f7] bg-white px-6 py-3 text-base font-bold text-[#6d31f8]"
+            className="btn btn-outline inline-flex items-center gap-2 rounded-full border-[#7d33f7] bg-white px-6 text-base font-bold text-[#6d31f8]"
             type="button"
           >
             <img className="h-4 w-4 object-contain" src={playIcon} alt="" aria-hidden="true" />

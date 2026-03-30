@@ -10,18 +10,18 @@ function CtaSection() {
         Start your free trial today.
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
-        <button
-          className="rounded-full border border-transparent bg-white px-7 py-3 text-base font-bold text-[#5f2cff]"
-          type="button"
+        <a
+          className="btn rounded-full border border-transparent bg-white px-7 text-base font-bold text-[#5f2cff]"
+          href="#products"
         >
           Explore Products
-        </button>
-        <button
-          className="rounded-full border border-white/70 bg-transparent px-7 py-3 text-base font-medium text-white"
-          type="button"
+        </a>
+        <a
+          className="btn btn-outline rounded-full border-white/70 bg-transparent px-7 text-base font-medium text-white"
+          href="#pricing"
         >
           View Pricing
-        </button>
+        </a>
       </div>
       <p className="mt-6 text-sm text-white/75 md:text-base">
         14-day free trial • No credit card required • Cancel anytime

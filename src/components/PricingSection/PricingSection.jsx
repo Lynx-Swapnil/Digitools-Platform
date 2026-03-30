@@ -3,6 +3,7 @@ import PricingCard from './PricingCard'
 
 function PricingSection() {
   const [plans, setPlans] = useState([])
+  const [activePlan, setActivePlan] = useState('')
 
   useEffect(() => {
     const loadPlans = async () => {
@@ -14,8 +15,12 @@ function PricingSection() {
 
         const data = await response.json()
         setPlans(data)
+
+        const defaultActivePlan = data.find((plan) => plan.featured)?.name || data[0]?.name || ''
+        setActivePlan(defaultActivePlan)
       } catch (_error) {
         setPlans([])
+        setActivePlan('')
       }
     }
 
@@ -34,7 +39,12 @@ function PricingSection() {
       </header>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
         {plans.map((plan) => (
-          <PricingCard key={plan.name} plan={plan} />
+          <PricingCard
+            key={plan.name}
+            plan={plan}
+            isActive={activePlan === plan.name}
+            onSelect={() => setActivePlan(plan.name)}
+          />
         ))}
       </div>
     </section>

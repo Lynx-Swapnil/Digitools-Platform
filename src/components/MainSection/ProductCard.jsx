@@ -13,7 +13,7 @@ function ProductCard({ product, isInCart, onAddToCart }) {
         >
           <Icon />
         </span>
-        <span className="rounded-full bg-[#f6f2ff] px-2.5 py-1 text-xs font-bold text-[#6429e8]">
+        <span className="badge border-0 bg-[#f6f2ff] px-2.5 py-1 text-xs font-bold text-[#6429e8]">
           {product.tagType}
         </span>
       </div>
@@ -27,10 +27,10 @@ function ProductCard({ product, isInCart, onAddToCart }) {
       </ul>
       <button
         type="button"
-        className={`mt-auto w-full rounded-full border-0 px-6 py-3 text-base font-bold text-white transition-all ${
+        className={`btn mt-auto w-full rounded-full border-0 px-6 text-base font-bold text-white transition-all ${
           isInCart
-            ? 'cursor-not-allowed bg-[#b8a8eb]'
-            : 'bg-linear-to-r from-[#5f2cff] to-[#9627ff] hover:brightness-110 active:translate-y-[1px]'
+            ? 'btn-disabled cursor-not-allowed bg-[#b8a8eb]'
+            : 'btn-primary bg-linear-to-r from-[#5f2cff] to-[#9627ff] hover:brightness-110 active:translate-y-[1px]'
         }`}
         onClick={() => onAddToCart(product)}
         disabled={isInCart}

@@ -30,27 +30,23 @@ function Navbar({ cartCount, onOpenCart }) {
 
       <div className="flex items-center gap-2 md:gap-3">
         <button
-          className="relative inline-flex items-center justify-center border-0 bg-transparent text-xl text-[#1f2937]"
-          type="button"
+          className="btn btn-ghost relative text-xl text-[#1f2937] hover: bg-transparent border-none shadow-none"
           onClick={onOpenCart}
-          aria-label="Open cart"
-          title="Open cart"
         >
           <FaShoppingCart aria-hidden="true" />
           {cartCount > 0 ? (
-            <span className="absolute -top-2 -right-3 inline-flex h-[1.15rem] min-w-[1.15rem] items-center justify-center rounded-full bg-red-500 px-1 text-[0.68rem] font-bold leading-none text-white">
+            <span className="badge badge-error badge-xs absolute -top-1 -right-1 text-white">
               {cartCount}
             </span>
           ) : null}
         </button>
-        <button
-          className="hidden border-0 bg-transparent text-base font-semibold text-[#182231] md:inline-block"
-          type="button"
+        <a
+          className="text-lg font-semibold text-[#2f3745] md:inline-flex" href="#"
         >
           Login
-        </button>
+        </a>
         <button
-          className="rounded-full border-0 bg-gradient-to-r from-[#6c30f8] to-[#8123f7] px-4 py-2 text-sm font-bold text-white md:px-6 md:text-base"
+          className="btn btn-primary btn-sm rounded-full border-0 bg-linear-to-r from-[#6c30f8] to-[#8123f7] text-sm font-bold text-white md:btn-md md:px-6 md:text-base"
           type="button"
         >
           Get Started

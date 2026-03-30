@@ -1,10 +1,10 @@
 import { FaCheck } from 'react-icons/fa'
 
-function PricingCard({ plan }) {
+function PricingCard({ plan, isActive, onSelect }) {
   return (
     <article
       className={`relative flex h-full flex-col rounded-2xl border p-5 ${
-        plan.featured
+        isActive
           ? 'border-transparent bg-linear-to-br from-[#5f2cff] to-[#a21dff] text-white shadow-[0_18px_32px_-24px_rgba(98,46,255,0.9)]'
           : 'border-[#e5e7eb] bg-white text-[#111827]'
       }`}
@@ -16,34 +16,35 @@ function PricingCard({ plan }) {
       ) : null}
 
       <h3 className="font-heading text-4xl font-bold">{plan.name}</h3>
-      <p className={`mt-1 text-lg ${plan.featured ? 'text-white/85' : 'text-[#64748b]'}`}>
+      <p className={`mt-1 text-lg ${isActive ? 'text-white/85' : 'text-[#64748b]'}`}>
         {plan.subtitle}
       </p>
 
       <div className="mt-6 flex items-baseline gap-1">
         <span className="font-heading text-5xl font-extrabold">{plan.price}</span>
-        <span className={`${plan.featured ? 'text-white/85' : 'text-[#64748b]'}`}>{plan.period}</span>
+        <span className={`${isActive ? 'text-white/85' : 'text-[#64748b]'}`}>{plan.period}</span>
       </div>
 
       <ul className="mt-6 space-y-2.5">
         {plan.features.map((feature) => (
           <li
             key={feature}
-            className={`flex items-start gap-2 ${plan.featured ? 'text-white' : 'text-[#334155]'}`}
+            className={`flex items-start gap-2 ${isActive ? 'text-white' : 'text-[#334155]'}`}
           >
-            <FaCheck className={`mt-1 shrink-0 ${plan.featured ? 'text-white' : 'text-[#22c55e]'}`} />
+            <FaCheck className={`mt-1 shrink-0 ${isActive ? 'text-white' : 'text-[#22c55e]'}`} />
             <span>{feature}</span>
           </li>
         ))}
       </ul>
      <br />
       <button
-        className={`mt-auto w-full rounded-full px-5 py-2.5 text-base font-bold ${
-          plan.featured
-            ? 'bg-white text-[#5f2cff]'
-            : 'bg-linear-to-r from-[#5f2cff] to-[#9627ff] text-white'
+        className={`btn mt-auto w-full rounded-full px-5 text-base font-bold ${
+          isActive
+            ? 'border-0 bg-white text-[#5f2cff]'
+            : 'btn-primary border-0 bg-linear-to-r from-[#5f2cff] to-[#9627ff] text-white'
         }`}
         type="button"
+        onClick={onSelect}
       >
         {plan.buttonText}
       </button>

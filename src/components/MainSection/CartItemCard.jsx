@@ -19,7 +19,7 @@ function CartItemCard({ item, index, onRemoveFromCart }) {
         </div>
       </div>
       <button
-        className="rounded-full border-0 bg-[#ffe8ec] px-3 py-1.5 font-bold text-[#d7254d]"
+        className="btn btn-ghost btn-sm rounded-full border-0 bg-[#ffe8ec] px-3 font-bold text-[#d7254d]"
         type="button"
         onClick={() => onRemoveFromCart(index)}
       >

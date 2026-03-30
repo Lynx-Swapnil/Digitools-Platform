@@ -1,4 +1,4 @@
-import CartItemCard from './CartItemCard'
+import CartSection from './CartSection'
 import ProductCard from './ProductCard'
 
 function MainSection({
@@ -13,7 +13,7 @@ function MainSection({
   onCheckout,
 }) {
   const baseToggleButton =
-    'rounded-full border-0 px-4 py-2 text-sm font-bold transition-colors md:px-5'
+    'btn join-item rounded-full border-0 px-4 py-2 text-sm font-bold shadow-none transition-none hover:shadow-none focus:shadow-none md:px-5'
   const cartItemIds = new Set(cartItems.map((item) => item.id))
 
   return (
@@ -26,15 +26,15 @@ function MainSection({
           Choose from our curated collection of premium digital products designed <br />to boost your productivity and creativity.
         </p>
         <div
-          className="mt-4 inline-flex rounded-full border border-[#e8e9f0] bg-white p-1"
+          className="join mt-4 inline-flex rounded-full border border-[#e8e9f0] bg-white p-1"
           role="tablist"
           aria-label="View switcher"
         >
           <button
             className={`${baseToggleButton} ${
               activeView === 'products'
-                ? 'bg-[#6d31f8] text-white'
-                : 'bg-transparent text-[#5c5f7a]'
+                ? 'btn-primary bg-[#6d31f8] text-white'
+                : 'btn-ghost bg-transparent text-[#5c5f7a]'
             }`}
             type="button"
             role="tab"
@@ -45,7 +45,9 @@ function MainSection({
           </button>
           <button
             className={`${baseToggleButton} ${
-              activeView === 'cart' ? 'bg-[#6d31f8] text-white' : 'bg-transparent text-[#5c5f7a]'
+              activeView === 'cart'
+                ? 'btn-primary bg-[#6d31f8] text-white'
+                : 'btn-ghost bg-transparent text-[#5c5f7a]'
             }`}
             type="button"
             role="tab"
@@ -73,42 +75,12 @@ function MainSection({
           })}
         </div>
       ) : (
-        <section
-          className="rounded-2xl border border-[#e8e9f0] bg-white p-5"
-          aria-live="polite"
-        >
-          <h3 className="font-heading text-2xl font-bold text-[#1d1f3a]">Your Cart</h3>
-
-          {!cartItems.length ? (
-            <p className="text-[#5c5f7a]">Your cart is empty. Pick a product to get started.</p>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 gap-3">
-                {cartItems.map((item, index) => (
-                  <CartItemCard
-                    key={`${item.id}-${index}`}
-                    item={item}
-                    index={index}
-                    onRemoveFromCart={onRemoveFromCart}
-                  />
-                ))}
-              </div>
-              <div className="mt-4">
-                <p className="mb-3 flex justify-between">
-                  <span>Total ({cartItems.length})</span>
-                  <strong>${totalPrice}</strong>
-                </p>
-                <button
-                  className="w-full rounded-full border-0 bg-linear-to-r from-[#5f2cff] to-[#9627ff] px-6 py-3 text-base font-bold text-white"
-                  type="button"
-                  onClick={onCheckout}
-                >
-                  Proceed to Checkout
-                </button>
-              </div>
-            </>
-          )}
-        </section>
+        <CartSection
+          cartItems={cartItems}
+          totalPrice={totalPrice}
+          onRemoveFromCart={onRemoveFromCart}
+          onCheckout={onCheckout}
+        />
       )}
     </section>
   )
