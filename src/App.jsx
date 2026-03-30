@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
 import CtaSection from './components/CtaSection/CtaSection'
 import Footer from './components/Footer/Footer'
@@ -6,32 +6,42 @@ import HeroSection from './components/HeroSection/HeroSection'
 import MainSection from './components/MainSection/MainSection'
 import Navbar from './components/Navbar/Navbar'
 import PricingSection from './components/PricingSection/PricingSection'
+import SectionSpinner from './components/SectionSpinner'
 import StatsSection from './components/StatsSection/StatsSection'
 import StepsSection from './components/StepsSection/StepsSection'
 import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
-  const [products, setProducts] = useState([])
   const [activeView, setActiveView] = useState('products')
   const [cartItems, setCartItems] = useState([])
+  const productsPromise = useMemo(
+    () =>
+      fetch('/products.json')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Unable to load products')
+          }
+          return response.json()
+        })
+        .catch(() => {
+          toast.error('Failed to load product list')
+          return []
+        }),
+    [],
+  )
 
-  useEffect(() => {
-    const loadProducts = async () => {
-      try {
-        const response = await fetch('/products.json')
-        if (!response.ok) {
-          throw new Error('Unable to load products')
-        }
-
-        const data = await response.json()
-        setProducts(data)
-      } catch {
-        toast.error('Failed to load product list')
-      }
-    }
-
-    loadProducts()
-  }, [])
+  const plansPromise = useMemo(
+    () =>
+      fetch('/plans.json')
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Unable to load plans')
+          }
+          return response.json()
+        })
+        .catch(() => []),
+    [],
+  )
 
   const totalPrice = useMemo(
     () => cartItems.reduce((sum, item) => sum + item.price, 0),
@@ -83,19 +93,27 @@ function App() {
       <main>
         <HeroSection />
         <StatsSection />
-        <MainSection
-          products={products}
-          activeView={activeView}
-          onShowProducts={() => setActiveView('products')}
-          onShowCart={() => setActiveView('cart')}
-          onAddToCart={addToCart}
-          cartItems={cartItems}
-          totalPrice={totalPrice}
-          onRemoveFromCart={removeFromCart}
-          onCheckout={checkout}
-        />
+        <Suspense
+          fallback={<SectionSpinner id="products" message="Loading products..." />}
+        >
+          <MainSection
+            productsPromise={productsPromise}
+            activeView={activeView}
+            onShowProducts={() => setActiveView('products')}
+            onShowCart={() => setActiveView('cart')}
+            onAddToCart={addToCart}
+            cartItems={cartItems}
+            totalPrice={totalPrice}
+            onRemoveFromCart={removeFromCart}
+            onCheckout={checkout}
+          />
+        </Suspense>
         <StepsSection />
-        <PricingSection />
+        <Suspense
+          fallback={<SectionSpinner id="pricing" message="Loading plans..." />}
+        >
+          <PricingSection plansPromise={plansPromise} />
+        </Suspense>
         <CtaSection />
       </main>
 

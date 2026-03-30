@@ -1,8 +1,9 @@
+import { use } from 'react'
 import CartSection from './CartSection'
 import ProductCard from './ProductCard'
 
 function MainSection({
-  products,
+  productsPromise,
   activeView,
   onShowProducts,
   onShowCart,
@@ -12,6 +13,7 @@ function MainSection({
   onRemoveFromCart,
   onCheckout,
 }) {
+  const products = use(productsPromise)
   const baseToggleButton =
     'btn join-item rounded-full border-0 px-4 py-2 text-sm font-bold shadow-none transition-none hover:shadow-none focus:shadow-none md:px-5'
   const cartItemIds = new Set(cartItems.map((item) => item.id))

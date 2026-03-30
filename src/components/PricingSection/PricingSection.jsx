@@ -1,31 +1,13 @@
-import { useEffect, useState } from 'react'
+import { use, useState } from 'react'
 import PricingCard from './PricingCard'
 
-function PricingSection() {
-  const [plans, setPlans] = useState([])
-  const [activePlan, setActivePlan] = useState('')
-
-  useEffect(() => {
-    const loadPlans = async () => {
-      try {
-        const response = await fetch('/plans.json')
-        if (!response.ok) {
-          throw new Error('Unable to load plans')
-        }
-
-        const data = await response.json()
-        setPlans(data)
-
-        const defaultActivePlan = data.find((plan) => plan.featured)?.name || data[0]?.name || ''
-        setActivePlan(defaultActivePlan)
-      } catch {
-        setPlans([])
-        setActivePlan('')
-      }
-    }
-
-    loadPlans()
-  }, [])
+function PricingSection({ plansPromise }) {
+  const plans = use(plansPromise)
+  const [selectedPlan, setSelectedPlan] = useState('')
+  const defaultActivePlan = plans.find((plan) => plan.featured)?.name || plans[0]?.name || ''
+  const activePlan = plans.some((plan) => plan.name === selectedPlan)
+    ? selectedPlan
+    : defaultActivePlan
 
   return (
     <section className="mx-auto w-full max-w-7xl px-3 py-20 md:px-4 lg:px-6" id="pricing">
@@ -43,7 +25,7 @@ function PricingSection() {
             key={plan.name}
             plan={plan}
             isActive={activePlan === plan.name}
-            onSelect={() => setActivePlan(plan.name)}
+            onSelect={() => setSelectedPlan(plan.name)}
           />
         ))}
       </div>
