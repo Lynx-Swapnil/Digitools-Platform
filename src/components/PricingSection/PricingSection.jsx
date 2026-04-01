@@ -12,7 +12,7 @@ function PricingSection({ plansPromise }) {
   return (
     <section className="mx-auto w-full max-w-7xl px-3 py-20 md:px-4 lg:px-6" id="pricing">
       <header className="mb-9 text-center">
-        <h2 className="font-heading text-5xl font-extrabold leading-tight text-[#111827]">
+        <h2 className="font-heading text-3xl font-extrabold leading-tight text-[#111827] md:text-5xl">
           Simple, Transparent Pricing
         </h2>
         <p className="mt-3 text-lg text-[#64748b]">

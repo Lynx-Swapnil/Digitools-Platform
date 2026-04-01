@@ -7,7 +7,7 @@ function Footer() {
       <div className="mx-auto w-full max-w-7xl">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-[1.6fr_repeat(3,minmax(0,1fr))_1fr]">
           <div>
-            <h3 className="font-heading text-5xl font-extrabold text-white">DigiTools</h3>
+            <h3 className="font-heading text-3xl font-extrabold text-white md:text-5xl">DigiTools</h3>
             <p className="mt-3 max-w-xs text-base leading-relaxed text-[#b9c4d9]">
               Premium digital tools for creators, professionals, and businesses.
               Work smarter with our suite of powerful tools.

@@ -1,7 +1,7 @@
 function CtaSection() {
   return (
     <section className="mt-10 w-full bg-linear-to-r from-[#4f2cff] to-[#9f22ff] px-4 py-20 text-center text-white md:px-6 lg:px-8">
-      <h2 className="font-heading text-5xl font-extrabold leading-tight md:text-6xl">
+      <h2 className="font-heading text-3xl font-extrabold leading-tight md:text-5xl lg:text-6xl">
         Ready To Transform Your Workflow?
       </h2>
       <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-white/85 md:text-xl">

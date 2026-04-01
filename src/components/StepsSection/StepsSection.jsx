@@ -33,7 +33,7 @@ function StepsSection() {
       id="steps"
     >
       <header className="mb-10 text-center">
-        <h2 className="font-heading text-5xl font-extrabold leading-tight text-[#111827]">
+        <h2 className="font-heading text-3xl font-extrabold leading-tight text-[#111827] md:text-5xl">
           Get Started In 3 Steps
         </h2>
         <p className="mt-3 text-lg text-[#64748b]">

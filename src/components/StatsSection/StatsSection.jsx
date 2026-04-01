@@ -5,15 +5,15 @@ function StatsSection() {
       aria-label="Platform statistics"
     >
       <div className="py-3 md:border-r md:border-white/25">
-        <h3 className="font-heading text-5xl font-extrabold leading-none">50K+</h3>
+        <h3 className="font-heading text-4xl font-extrabold leading-none md:text-5xl">50K+</h3>
         <p className="mt-2 text-lg text-white/85">Active Users</p>
       </div>
       <div className="py-3 md:border-r md:border-white/25">
-        <h3 className="font-heading text-5xl font-extrabold leading-none">200+</h3>
+        <h3 className="font-heading text-4xl font-extrabold leading-none md:text-5xl">200+</h3>
         <p className="mt-2 text-lg text-white/85">Premium Tools</p>
       </div>
       <div className="py-3">
-        <h3 className="font-heading text-5xl font-extrabold leading-none">4.9</h3>
+        <h3 className="font-heading text-4xl font-extrabold leading-none md:text-5xl">4.9</h3>
         <p className="mt-2 text-lg text-white/85">Rating</p>
       </div>
     </section>
